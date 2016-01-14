@@ -4881,6 +4881,17 @@ public final class Settings {
         public static final String BATTERY_BAR_USE_GRADIENT_COLOR = "battery_bar_use_gradient_color";
 
         /**
+         * whether to enable or disable vibration on succesful fingerprint auth
+         *
+         * @hide
+         */
+        public static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
+
+        /** @hide */
+        private static final Validator FINGERPRINT_SUCCESS_VIB_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4952,6 +4963,7 @@ public final class Settings {
             QS_BLUR_ALPHA,
             NOTIFICATION_HEADERS,
             HIDE_SMART_REPLIES,
+            FINGERPRINT_SUCCESS_VIB,
         };
 
         /**
@@ -5101,6 +5113,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_BLUR_ALPHA);
             PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
             PRIVATE_SETTINGS.add(HIDE_SMART_REPLIES);
+            PRIVATE_SETTINGS.add(FINGERPRINT_SUCCESS_VIB);
         }
 
         /**
@@ -5225,6 +5238,7 @@ public final class Settings {
             VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA, LOCKSCREEN_MEDIA_METADATA_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_HEADERS, NOTIFICATION_HEADERS_VALIDATOR);
             VALIDATORS.put(HIDE_SMART_REPLIES, HIDE_SMART_REPLIES_VALIDATOR);
+            VALIDATORS.put(FINGERPRINT_SUCCESS_VIB, FINGERPRINT_SUCCESS_VIB_VALIDATOR);
         }
 
         /**
