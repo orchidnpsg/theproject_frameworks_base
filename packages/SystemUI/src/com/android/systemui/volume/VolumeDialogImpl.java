@@ -195,6 +195,8 @@ public class VolumeDialogImpl implements VolumeDialog,
 
     private boolean mExpanded;
 
+    private boolean mExpanded;
+
     public VolumeDialogImpl(Context context) {
         mContext =
                 new ContextThemeWrapper(context, R.style.qs_theme);
@@ -597,31 +599,6 @@ public class VolumeDialogImpl implements VolumeDialog,
                     mExpanded = false;
                 }
                 mExpandRows.setExpanded(mExpanded);
-            });
-        }
-    }
-
-    public void initSettingsH() {
-        updateMediaOutputH();
-        if (mAllyStream == -1) {
-            mAllyStream = mActiveStream;
-        }
-
-        if (mExpandRowsView != null) {
-            mExpandRowsView.setVisibility(
-                    mDeviceProvisionedController.isCurrentUserSetup() &&
-                            mActivityManager.getLockTaskModeState() == LOCK_TASK_MODE_NONE ?
-                            VISIBLE : GONE);
-        }
-        if (mExpandRows != null) {
-            mExpandRows.setOnClickListener(v -> {
-                rescheduleTimeoutH();
-                animateExpandedRowsChange(!mExpanded);
-
-                mExpandRows.setExpanded(!mExpanded);
-                mExpanded = !mExpanded;
-
-                updateMediaOutputH();
             });
         }
     }
