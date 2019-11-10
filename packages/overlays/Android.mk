@@ -30,8 +30,11 @@ LOCAL_REQUIRED_MODULES := \
 	AccentColorBlueGrayOverlay \
 	DisplayCutoutEmulationCornerOverlay \
 	DisplayCutoutEmulationDoubleOverlay \
-	DisplayCutoutEmulationTallOverlay \
-	FontNotoSerifSourceOverlay \
+	DisplayCutoutEmulationTallOverlay 
+	FontArbutusSourceOverlay \
+	FontArvoLatoOverlay \
+	FontGoogleSansOverlay \
+	FontRubikRubikOverlay \
 	IconPackCircularAndroidOverlay \
 	IconPackCircularLauncherOverlay \
 	IconPackCircularSettingsOverlay \
