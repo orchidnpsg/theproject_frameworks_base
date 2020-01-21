@@ -1115,7 +1115,10 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     public void updateBlurVisibility() {
 
-        int QSBlurAlpha = Math.round(255.0f * mNotificationPanel.getExpandedFraction());
+        int QSUserAlpha = Settings.System.getInt(mContext.getContentResolver(),
+              Settings.System.QS_BLUR_ALPHA, 100);
+        int QSBlurAlpha = Math.round(255.0f *
+                mNotificationPanel.getExpandedFraction() * (float)((float) QSUserAlpha / 100.0));
 
         if (QSBlurAlpha > 0 && !blurperformed && mState != StatusBarState.KEYGUARD && isQSBlurEnabled()) {
             Bitmap bittemp = ImageUtilities.blurImage(mContext, ImageUtilities.screenshotSurface(mContext));
@@ -4882,6 +4885,48 @@ public class StatusBar extends SystemUI implements DemoMode,
     public void startAssist(Bundle args) {
         if (mAssistManager != null) {
             mAssistManager.startAssist(args);
+        }
+    }
+    // End Extra BaseStatusBarMethods.
+
+    public NotificationGutsManager getGutsManager() {
+        return mGutsManager;
+    }
+
+    private SbSettingsObserver mSbSettingsObserver = new SbSettingsObserver(mHandler);
+    private class SbSettingsObserver extends ContentObserver {
+        SbSettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NAVIGATION_BAR_SHOW),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_BLUR_ALPHA),
+                    false, this, UserHandle.USER_ALL);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            super.onChange(selfChange, uri);
+            if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.NAVIGATION_BAR_SHOW))) {
+                updateNavigationBar();
+            }
+        }
+
+        public void update() {
+            updateBlurVisibility();
+        }
+    }
+
+    private void setNavBarInteractionMode(String overlayPackage) {
+        try {
+            mOverlayManager.setEnabledExclusiveInCategory(overlayPackage, UserHandle.USER_CURRENT);
+        } catch (Exception e) {
         }
     }
 

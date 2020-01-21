@@ -4547,6 +4547,15 @@ public final class Settings {
         private static final Validator QS_BLUR_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * QS blur alpha
+         * @hide
+         */
+        public static final String QS_BLUR_ALPHA = "qs_blur_alpha";
+
+        /** @hide */
+        private static final Validator QS_BLUR_ALPHA_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4615,6 +4624,7 @@ public final class Settings {
             PULSE_AMBIENT_LIGHT_COLOR,
             CHARGING_ANIMATION,
             QS_BLUR,
+            QS_BLUR_ALPHA,
         };
 
         /**
@@ -4761,6 +4771,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_COLOR);
             PRIVATE_SETTINGS.add(CHARGING_ANIMATION);
             PRIVATE_SETTINGS.add(QS_BLUR);
+            PRIVATE_SETTINGS.add(QS_BLUR_ALPHA);
         }
 
         /**
@@ -4881,7 +4892,8 @@ public final class Settings {
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR, PULSE_AMBIENT_LIGHT_COLOR_VALIDATOR);
             VALIDATORS.put(CHARGING_ANIMATION, CHARGING_ANIMATION_VALIDATOR);
             VALIDATORS.put(QS_BLUR, QS_BLUR_VALIDATOR);
-       }
+            VALIDATORS.put(QS_BLUR_ALPHA, QS_BLUR_ALPHA_VALIDATOR);
+        }
 
         /**
          * These entries are considered common between the personal and the managed profile,
