@@ -31,9 +31,11 @@
     <integer name="config_maxVisibleNotificationIcons">4</integer>
     <integer name="config_maxVisibleNotificationIconsOnLock">5</integer>
 
-    <!-- Should we listen for fingerprints when the screen is off?  Devices
-         with a rear-mounted sensor want this, but certain devices have
-         the sensor embedded in the power key and listening all the time
-         causes a poor experience. -->
-    <bool name="config_fingerprintWakeAndUnlock">true</bool>
+
+    <!-- Allow devices to enforce the H265 encoder for screen recordings -->
+    <bool name="config_useNewScreenRecEncoder">true</bool>
+
+    <!-- Allow devices to hide black gradient behind QS Panel -->
+    <bool name="config_hideQSBlackGradient">true</bool>
+
 </resources>
